@@ -1,10 +1,18 @@
+import os
 import json
+import fnmatch
+import matplotlib.pyplot as plt
+
 from shutil import copyfile
 from mako.template import Template
 
+
 mytemplate = Template(filename='template.html')
 detailed = Template(filename='detailed_template.html')
+graphs = Template(filename='graphs_template.html')
 template_data = {}
+
+# index
 
 with open('report/info.json') as json_file:
     data = json.load(json_file)
@@ -77,6 +85,8 @@ f.write(mytemplate.render(
     )
 )
 f.close()
+
+# detailed
 
 detailed_data = []
 
@@ -341,7 +351,44 @@ f.write(detailed.render(
 )
 f.close()
 
+# graphs
+
+graphs_data = []
+
+lvc = []
+fp = []
+dit = []
+
+for dirpath, dirs, files in os.walk("./custom"):
+  for file in files:
+    if fnmatch.fnmatch(file, "*.json"):
+      with open(file) as json_file:
+        data = json.load(json_file)
+        lvc.append(data[0]['visualMetrics']['LastVisualChange'])
+	    fp.append(data[0]['browserScripts']['timings']['firstPaint'])
+        dit.append(data[0]['browserScripts']['timings']['pageTimings']['domInteractiveTime'])
+
+plt.hist(lvc, bins=1000)
+plt.savefig("lvc.png")
+
+plt.clf()
+plt.hist(fp, bins=1000)
+plt.savefig("fp.png")
+
+plt.clf()
+plt.hist(dit, bins=1000)
+plt.savefig("dit.png")
+
+f = open("graphs.html", "w")
+f.write(detailed.render(
+    data=graphs_data,
+    url=template_data["url"]
+    )
+)
+f.close()
+
 copyfile("report.html", "report/report.html")
 copyfile("detailed.html", "report/detailed.html")
+copyfile("graphs.html", "report/graphs.html")
 copyfile("index.min.css", "report/index.min.css")
 copyfile("help.html", "report/help.html")
