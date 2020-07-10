@@ -1,0 +1,34 @@
+<html>
+<head>
+    <link rel="stylesheet" href="index.min.css">
+</head>
+<body>
+
+<div class="darkblue nav">
+    <div class="navgrid">
+        <ul>
+            <li><a class="custom" href="#"> To infinity... and beyond! </a>/li>
+            <li><a class="active" href="report.html">Summary</a></li>
+            <li><a href="detailed.html">Detailed Summary</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="url">${url}</h2>
+
+    % for column in rows:
+    <div class="row">
+        % for info in column:
+        <div class="one-third column">
+            <div class="summarybox info">${info[0]}
+                <div class="summarynumber">${info[1]} <span class="summarysmall">(${info[2]})</span></div>
+            </div>
+        </div>
+        % endfor
+    </div>
+    % endfor
+</div>
+
+</body>
+</html>
