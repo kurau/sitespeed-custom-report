@@ -67,14 +67,6 @@ with open('report/info.json') as json_file:
         data[0]["statistics"]["visualMetrics"]["VisualReadiness"]["median"],
         data[0]["statistics"]["visualMetrics"]["VisualReadiness"]["p90"]])
 
-#     rows[3].append([
-#          "CumulativeLayoutShift",
-#          "...",
-#          "..."])
-#     rows[3].append([
-#          "etc...",
-#          "...",
-#          "..."])
 
     json_file.close()
 
@@ -341,20 +333,9 @@ detailed_data[22]= [
  data[0]["statistics"]["visualMetrics"]["LastVisualChange"]["max"]
 ]
 
-catness = [
- "Verticals Special Metric",
- "help.html#verticalsSpecialMetric",
- "100%",
- "100%",
- "100%",
- "100%",
- "100%"
-]
-
 f = open("detailed.html", "w")
 f.write(detailed.render(
     data=detailed_data,
-    catness=catness,
     url=template_data["url"]
     )
 )
