@@ -353,42 +353,53 @@ f.close()
 
 # graphs
 
-graphs_data = []
+f = open("graphs.html", "w")
+f.write(graphs.render(url=template_data["url"])
+)
+f.close()
 
 lvc = []
 fp = []
 dit = []
 
-for dirpath, dirs, files in os.walk("./custom"):
+for dirpath, dirs, files in os.walk("report/custom"):
   for file in files:
-    if fnmatch.fnmatch(file, "*.json"):
-      with open(file) as json_file:
+    if fnmatch.fnmatch(file, "*-metric.json"):
+      with open(os.path.join(dirpath, file)) as json_file:
         data = json.load(json_file)
         lvc.append(data[0]['visualMetrics']['LastVisualChange'])
-	    fp.append(data[0]['browserScripts']['timings']['firstPaint'])
+        fp.append(data[0]['browserScripts']['timings']['firstPaint'])
         dit.append(data[0]['browserScripts']['timings']['pageTimings']['domInteractiveTime'])
 
-plt.hist(lvc, bins=1000)
+plt.clf()
+plt.title('Last Visual Change')
+plt.xlabel("time in ms")
+plt.ylabel("Frequency")
+plt.hist(lvc, bins=500)
 plt.savefig("lvc.png")
 
 plt.clf()
-plt.hist(fp, bins=1000)
+plt.title('First Paint')
+plt.xlabel("time in ms")
+plt.ylabel("Frequency")
+plt.hist(fp, bins=500)
 plt.savefig("fp.png")
 
 plt.clf()
-plt.hist(dit, bins=1000)
+plt.title('Dom Interactive Time')
+plt.xlabel("time in ms")
+plt.ylabel("Frequency")
+plt.hist(dit, bins=500)
 plt.savefig("dit.png")
 
-f = open("graphs.html", "w")
-f.write(detailed.render(
-    data=graphs_data,
-    url=template_data["url"]
-    )
-)
-f.close()
+
 
 copyfile("report.html", "report/report.html")
 copyfile("detailed.html", "report/detailed.html")
 copyfile("graphs.html", "report/graphs.html")
 copyfile("index.min.css", "report/index.min.css")
 copyfile("help.html", "report/help.html")
+
+copyfile("fp.png", "report/fp.png")
+copyfile("lvc.png", "report/lvc.png")
+copyfile("dit.png", "report/dit.png")

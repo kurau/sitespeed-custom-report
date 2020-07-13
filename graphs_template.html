@@ -10,7 +10,7 @@
             <li><a class="custom" href="#"> To infinity... and beyond! </a>/li>
             <li><a href="report.html">Summary</a></li>
             <li><a href="detailed.html">Detailed Summary</a></li>
-            <li><a class="active"  href="graphs.html">Графики</a></li>
+            <li><a class="active"  href="graphs.html">Graphs</a></li>
         </ul>
     </div>
 </div>
@@ -18,31 +18,22 @@
 <div class="container">
     <h2 class="url">${url}</h2>
 
-    <div class="responsive">
-        <table data-sortable="" id="detailed" data-sortable-initialized="true">
-            <thead>
-            <tr>
-                <th>name</th>
-                <th>min</th>
-                <th>median</th>
-                <th>mean</th>
-                <th>p90</th>
-                <th>max</th>
-            </tr>
-            </thead>
-            <tbody>
-            % for col in data:
-            <tr>
-                <td data-title="Metric" data-value="${col[0]}"><a href="${col[1]}">${col[0]}</a></td>
-                <td data-title="min" data-value="${col[2]}">${col[2]} ms</td>
-                <td data-title="median" data-value="${col[3]}">${col[3]} ms</td>
-                <td data-title="mean" data-value="${col[4]}">${col[4]} ms</td>
-                <td data-title="p90" data-value="${col[5]}">${col[5]} ms</td>
-                <td data-title="max" data-value="${col[6]}">${col[6]} ms</td>
-            </tr>
-            % endfor
-            </tbody>
-        </table>
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="fp.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="lvc.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="dit.png" alt="">
+        </div>
     </div>
 </div>
 
