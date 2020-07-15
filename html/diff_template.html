@@ -1,0 +1,47 @@
+<html>
+<head>
+    <link rel="stylesheet" href="index.min.css">
+</head>
+<body>
+
+<div class="darkblue nav">
+    <div class="navgrid">
+        <ul>
+            <li><a class="custom" href="#"> To infinity... and beyond! </a>/li>
+            <li><a class="active" href="diff.html">Diff</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Exp 1</h2>
+    <h2 class="url2">${url2}</h2>
+    <h2>Exp 2</h2>
+    <h2 class="url2">${url2}</h2>
+
+    <div class="responsive">
+        <table data-sortable="" id="detailed" data-sortable-initialized="true">
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>exp1</th>
+                <th>exp2</th>
+                <th>diff</th>
+            </tr>
+            </thead>
+            <tbody>
+            % for row in rows:
+            <tr>
+                <td data-title="Metric" data-value="${row[0]}"><a href="${row[1]}">${row[0]}</a></td>
+                <td data-title="exp1" data-value="${row[2]}">${row[2]} ms</td>
+                <td data-title="exp2" data-value="${row[3]}">${row[3]} ms</td>
+                <td data-title="diff" style="${row[5]}" data-value="${row[4]}">${row[4]} ms</td>
+            </tr>
+            % endfor
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

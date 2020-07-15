@@ -11,10 +11,12 @@ RUN mkdir -p /sitespeed.io/report
 WORKDIR /sitespeed.io
 
 COPY script.py .
-COPY template.html .
-COPY detailed_template.html .
-COPY graphs_template.html .
-COPY help.html .
-COPY index.min.css .
+COPY info.py .
+COPY detailed.py .
+COPY graphs.py .
+COPY diff.py .
+COPY diff.sh .
+COPY common_report.sh .
+COPY html html
 
-ENTRYPOINT ["python", "script.py"]
+ENTRYPOINT ["./common_report.sh"]
