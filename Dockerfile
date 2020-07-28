@@ -14,8 +14,11 @@ COPY script.py .
 COPY info.py .
 COPY detailed.py .
 COPY graphs.py .
+COPY graphs.sh .
 COPY diff.py .
 COPY diff.sh .
+COPY lighthouse.py .
+COPY lighthouse.sh .
 COPY common_report.sh .
 COPY html html
 

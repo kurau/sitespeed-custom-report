@@ -1,0 +1,77 @@
+<html>
+<head>
+    <link rel="stylesheet" href="index.min.css">
+</head>
+<body>
+
+<div class="darkblue nav">
+    <div class="navgrid">
+        <ul>
+            <li><a class="custom" href="#"> To infinity... and beyond! </a>/li>
+            <li><a class="active" href="lighthouse.html">Lighthouse</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="url">${url}</h2>
+    <h2 >${times} times</h2>
+
+    <div class="responsive">
+        <table data-sortable="" id="detailed" data-sortable-initialized="true">
+            <thead>
+            <tr>
+                <th>name</th>
+                <th>min</th>
+                <th>median</th>
+                <th>max</th>
+                <th>Weight</th>
+            </tr>
+            </thead>
+            <tbody>
+            % for col in data:
+            <tr>
+                <td data-title="Metric" data-value="${col[0]}"><a href="${col[1]}">${col[0]}</a></td>
+                <td data-title="min" data-value="${col[2]}">${col[2]} ms</td>
+                <td data-title="median" data-value="${col[3]}">${col[3]} ms</td>
+                <td data-title="max" data-value="${col[4]}">${col[4]} ms</td>
+                <td data-title="weight" data-value="${col[5]}">${col[5]}</td>
+            </tr>
+            % endfor
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="firstContentfulPaint.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="speedIndex.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="largestContentfulPaint.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="timeToInteractive.png" alt="">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="one columns">
+            <img class="blue" src="totalBlockingTime.png" alt="">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
