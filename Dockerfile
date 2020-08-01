@@ -13,6 +13,7 @@ WORKDIR /sitespeed.io
 COPY script.py .
 COPY info.py .
 COPY detailed.py .
+COPY detailed_parallels_runs.py .
 COPY graphs.py .
 COPY graphs.sh .
 COPY diff.py .
@@ -20,6 +21,7 @@ COPY diff.sh .
 COPY lighthouse.py .
 COPY lighthouse.sh .
 COPY common_report.sh .
+COPY common_report_parallel.sh .
 COPY html html
 
 ENTRYPOINT ["./common_report.sh"]
