@@ -41,16 +41,20 @@ urlCount = 0
 
 for dirpath, dirs, files in os.walk("."):
   for file in files:
-    if fnmatch.fnmatch(file, "*-metric.report.json"):
-        with open(os.path.join(dirpath, file)) as json_file:
-            data = json.load(json_file)
-            firstContentfulPaint.append(data["audits"]["first-contentful-paint"]["numericValue"])
-            speedIndex.append(data["audits"]["speed-index"]["numericValue"])
-            largestContentfulPaint.append(data["audits"]["largest-contentful-paint"]["numericValue"])
-            timeToInteractive.append(data["audits"]["interactive"]["numericValue"])
-            totalBlockingTime.append(data["audits"]["total-blocking-time"]["numericValue"])
-            cumulativeLayoutShift.append(data["audits"]["cumulative-layout-shift"]["numericValue"])
-            urlCount += 1
+    if fnmatch.fnmatch(file, "*-lighthouse.json"):
+        try:
+            with open(os.path.join(dirpath, file)) as json_file:
+                data = json.load(json_file)
+                firstContentfulPaint.append(data["audits"]["first-contentful-paint"]["numericValue"])
+                speedIndex.append(data["audits"]["speed-index"]["numericValue"])
+                largestContentfulPaint.append(data["audits"]["largest-contentful-paint"]["numericValue"])
+                timeToInteractive.append(data["audits"]["interactive"]["numericValue"])
+                totalBlockingTime.append(data["audits"]["total-blocking-time"]["numericValue"])
+                cumulativeLayoutShift.append(data["audits"]["cumulative-layout-shift"]["numericValue"])
+                urlCount += 1
+        except Exception:
+            print("Problem with " + os.path.join(dirpath, file))
+        finally:
             json_file.close()
 
 finalUrl = data["finalUrl"]
