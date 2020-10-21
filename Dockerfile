@@ -18,6 +18,8 @@ COPY graphs.py .
 COPY graphs.sh .
 COPY diff.py .
 COPY diff.sh .
+COPY diff_parallels_runs.sh .
+COPY diff_parallels_runs.py .
 COPY lighthouse.py .
 COPY lighthouse.sh .
 COPY common_report.sh .
