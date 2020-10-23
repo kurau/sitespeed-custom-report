@@ -11,6 +11,7 @@ def median(lst):
     lstLen = len(lst)
     index = (lstLen - 1) // 2
 
+    #   3%2=1=true
     if (lstLen % 2):
         return int(sortedLst[index])
     else:
@@ -34,10 +35,15 @@ speedIndex = []
 largestContentfulPaint = []
 timeToInteractive = []
 cumulativeLayoutShift = []
+serverResponseTime = []
+
+score = []
 
 detailed_data = []
 
 urlCount = 0
+
+cookieEnv = os.environ['COOKIE']
 
 for dirpath, dirs, files in os.walk("."):
   for file in files:
@@ -51,6 +57,9 @@ for dirpath, dirs, files in os.walk("."):
                 timeToInteractive.append(data["audits"]["interactive"]["numericValue"])
                 totalBlockingTime.append(data["audits"]["total-blocking-time"]["numericValue"])
                 cumulativeLayoutShift.append(data["audits"]["cumulative-layout-shift"]["numericValue"])
+                serverResponseTime.append(data["audits"]["server-response-time"]["numericValue"])
+                scorePercent = data["categories"]["performance"]["score"] * 100
+                score.append(scorePercent)
                 urlCount += 1
         except Exception:
             print("Problem with " + os.path.join(dirpath, file))
@@ -113,11 +122,22 @@ detailed_data.append([
  "5%"
 ])
 
+detailed_data.append([
+ "(TTFB) server-response-time",
+ "https://web.dev/time-to-first-byte/",
+ min(serverResponseTime),
+ median(serverResponseTime),
+ max(serverResponseTime),
+ "-"
+])
+
 f = open("lighthouse.html", "w")
 f.write(lighthouse.render(
     data=detailed_data,
     url=finalUrl,
-    times=urlCount
+    times=urlCount,
+    cookie=cookieEnv,
+    scoreMed=median(score)
     )
 )
 f.close()
@@ -158,6 +178,20 @@ plt.ylabel("Frequency")
 plt.hist(timeToInteractive, bins=500)
 plt.savefig("timeToInteractive.png")
 
+plt.clf()
+plt.title('TTFB')
+plt.xlabel("time in ms")
+plt.ylabel("Frequency")
+plt.hist(serverResponseTime, bins=500)
+plt.savefig("serverResponseTime.png")
+
+plt.clf()
+plt.title('Score')
+plt.xlabel("score")
+plt.ylabel("Frequency")
+plt.hist(score, bins=100)
+plt.savefig("score.png")
+
 
 copyfile("html/index.min.css", "report/index.min.css")
 copyfile("lighthouse.html", "report/lighthouse.html")
@@ -167,3 +201,5 @@ copyfile("speedIndex.png", "report/speedIndex.png")
 copyfile("largestContentfulPaint.png", "report/largestContentfulPaint.png")
 copyfile("timeToInteractive.png", "report/timeToInteractive.png")
 copyfile("totalBlockingTime.png", "report/totalBlockingTime.png")
+copyfile("serverResponseTime.png", "report/serverResponseTime.png")
+copyfile("score.png", "report/score.png")

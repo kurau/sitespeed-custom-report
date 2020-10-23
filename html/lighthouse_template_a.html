@@ -8,14 +8,14 @@
     <div class="navgrid">
         <ul>
             <li><a class="custom" href="#"> To infinity... and beyond! </a>/li>
-            <li><a class="active" href="lighthouse.html">Lighthouse</a></li>
-            <li><a href="lighthouse_a.html">Median Performance by Score</a></li>
+            <li><a href="lighthouse.html">Lighthouse</a></li>
+            <li><a class="active" href="lighthouse_a.html">Median Performance by Score</a></li>
         </ul>
     </div>
 </div>
 
 <div class="container">
-    <h3 class="url">Median</h3>
+    <h3 class="url">delta for ${device}</h3>
     <h3 class="url">${url}</h3>
     <h3 >${times} times</h3>
     <h3 >Cookie: ${cookie}</h3>
@@ -28,8 +28,9 @@
                 <th>name</th>
                 <th>min</th>
                 <th>median</th>
+                <th>LH median</th>
+                <th>delta</th>
                 <th>max</th>
-                <th>Weight</th>
             </tr>
             </thead>
             <tbody>
@@ -38,53 +39,50 @@
                 <td data-title="Metric" data-value="${col[0]}"><a href="${col[1]}">${col[0]}</a></td>
                 <td data-title="min" data-value="${col[2]}">${col[2]} ms</td>
                 <td data-title="median" data-value="${col[3]}">${col[3]} ms</td>
-                <td data-title="max" data-value="${col[4]}">${col[4]} ms</td>
-                <td data-title="weight" data-value="${col[5]}">${col[5]}</td>
+                <td data-title="LH median" data-value="${col[4]}">${col[4]} ms</td>
+                <td data-title="delta" style="${col[6]}" data-value="${col[5]}">${col[5]} ms</td>
+                <td data-title="max" data-value="${col[7]}">${col[7]} ms</td>
             </tr>
             % endfor
             </tbody>
         </table>
     </div>
 
+    <div>from <a target="_blank" rel="noopener noreferrer" href="https://googlechrome.github.io/lighthouse/scorecalc/">lighthouse/scorecalc on 23.10.20202</a></div>
+
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="firstContentfulPaint.png" alt="">
+            <img class="blue" src="firstContentfulPaint_a.png" alt="">
         </div>
     </div>
 
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="speedIndex.png" alt="">
+            <img class="blue" src="speedIndex_a.png" alt="">
         </div>
     </div>
 
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="largestContentfulPaint.png" alt="">
+            <img class="blue" src="largestContentfulPaint_a.png" alt="">
         </div>
     </div>
 
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="timeToInteractive.png" alt="">
+            <img class="blue" src="timeToInteractive_a.png" alt="">
         </div>
     </div>
 
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="totalBlockingTime.png" alt="">
+            <img class="blue" src="totalBlockingTime_a.png" alt="">
         </div>
     </div>
 
     <div class="row">
         <div class="one columns">
-            <img class="blue" src="serverResponseTime.png" alt="">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="one columns">
-            <img class="blue" src="score.png" alt="">
+            <img class="blue" src="serverResponseTime_a.png" alt="">
         </div>
     </div>
 </div>
