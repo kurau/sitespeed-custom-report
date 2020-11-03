@@ -288,8 +288,6 @@ plt.ylabel("Frequency")
 plt.hist(serverResponseTime, bins=500)
 plt.savefig("serverResponseTime_a.png")
 
-
-copyfile("html/index.min.css", "report/index.min.css")
 copyfile("lighthouse_a.html", "report/lighthouse_a.html")
 
 copyfile("firstContentfulPaint_a.png", "report/firstContentfulPaint_a.png")
@@ -298,3 +296,5 @@ copyfile("largestContentfulPaint_a.png", "report/largestContentfulPaint_a.png")
 copyfile("timeToInteractive_a.png", "report/timeToInteractive_a.png")
 copyfile("totalBlockingTime_a.png", "report/totalBlockingTime_a.png")
 copyfile("serverResponseTime_a.png", "report/serverResponseTime_a.png")
+
+print("LH 2")

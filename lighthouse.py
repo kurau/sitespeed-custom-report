@@ -203,3 +203,5 @@ copyfile("timeToInteractive.png", "report/timeToInteractive.png")
 copyfile("totalBlockingTime.png", "report/totalBlockingTime.png")
 copyfile("serverResponseTime.png", "report/serverResponseTime.png")
 copyfile("score.png", "report/score.png")
+
+print("LH 1")

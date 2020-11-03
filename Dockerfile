@@ -23,6 +23,7 @@ COPY diff_parallels_runs.py .
 COPY lighthouse.py .
 COPY lighthouse_a.py .
 COPY lighthouse.sh .
+COPY lighthouse_a.sh .
 COPY common_report.sh .
 COPY common_report_parallel.sh .
 COPY html html
